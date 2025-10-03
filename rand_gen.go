@@ -30,7 +30,7 @@ func (r *RandomGenerator) String() (string, error) {
 	case float64:
 		return fmt.Sprintf("%f", v), nil
 	case *big.Float:
-		return v.Text('f', precision), nil
+		return v.Text('f', -1), nil
 	default:
 		return "", errors.New("Data is not a string")
 	}
