@@ -39,14 +39,15 @@ func NewRandomFromSet(r *RandBufferReader, length int, set []byte) (RandomGenera
 			return RandomGenerator{}, err
 		}
 		for i := range result {
-			result[i] = set[i]
+			result[i] = set[result[i]]
 		}
 		return RandomGenerator{
 			Data: result,
 		}, nil
 	}
 	// Standard case for set lengths between 1 and 255
-	maxByte := byte(255 - (255 % setLength))
+	remainder := 256 % setLength
+	maxByte := byte(0xFF - remainder)
 	_, err := r.ReadRange(result, [2]byte{0, maxByte})
 	if err != nil {
 		return RandomGenerator{}, err
