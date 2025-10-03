@@ -7,10 +7,6 @@ import (
 	"sync"
 )
 
-const (
-	defaultBufferSize = 256
-)
-
 type RandBufferReader struct {
 	buffer []byte
 	index  int
